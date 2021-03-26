@@ -1,6 +1,7 @@
 window.addEventListener("load", () => {
   let long;
   let lat;
+  let api;
   let temperatureDescription = document.querySelector(
     ".temperature-description"
   );
@@ -17,7 +18,12 @@ window.addEventListener("load", () => {
       long = position.coords.longitude;
       lat = position.coords.latitude;
       // openweather API
-      const api = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=aa2097f9269153f96be15c7173ef00c9`;
+      if (position.protocol === 'http:') {
+        api = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=aa2097f9269153f96be15c7173ef00c9`;
+     } else {
+        api = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=aa2097f9269153f96be15c7173ef00c9`;
+     }
+      // const api = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=aa2097f9269153f96be15c7173ef00c9`;
       /*
       darksky API:
         const proxy = 'https://cors-anywhere.herokuapp.com/';
