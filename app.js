@@ -23,7 +23,7 @@ window.addEventListener("load", () => {
       // } else {
       //   api = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=aa2097f9269153f96be15c7173ef00c9`;
       // }
-      const api = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=aa2097f9269153f96be15c7173ef00c9`;
+      const api = `https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=aa2097f9269153f96be15c7173ef00c9`;
       /*
       darksky API:
         const proxy = 'https://cors-anywhere.herokuapp.com/';
@@ -68,7 +68,7 @@ window.addEventListener("load", () => {
   }
 
   function setIcon(icon) {
-    weatherIcon.src = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
+    weatherIcon.src = "https://cors-anywhere.herokuapp.com/http://openweathermap.org/img/wn/" + icon + "@2x.png";
   }
 
   function cel2fahren(celsius) {
