@@ -1,7 +1,8 @@
 window.addEventListener("load", () => {
   let long;
   let lat;
-  // let api;
+  let api;
+  // const proxy = "https://cors-anywhere.herokuapp.com/";
   let temperatureDescription = document.querySelector(
     ".temperature-description"
   );
@@ -18,18 +19,11 @@ window.addEventListener("load", () => {
       long = position.coords.longitude;
       lat = position.coords.latitude;
       // openweather API
-      // if (position.protocol === 'http:') {
-      //   api = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=aa2097f9269153f96be15c7173ef00c9`;
-      // } else {
-      //   api = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=aa2097f9269153f96be15c7173ef00c9`;
-      // }
-      const api = `https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=aa2097f9269153f96be15c7173ef00c9`;
-      /*
-      darksky API:
-        const proxy = 'https://cors-anywhere.herokuapp.com/';
-        const api = `${proxy}https://api.darksky.net/forecast/fd9d9c6418c23d94745b836767721ad1/${lat},${long}`
-      darksky weather icon img: https://darkskyapp.github.io/skycons/
-      */
+      if (position.protocol === "http:") {
+        api = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=aa2097f9269153f96be15c7173ef00c9`;
+      } else {
+        api = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=aa2097f9269153f96be15c7173ef00c9`;
+      }
 
       fetch(api)
         .then((response) => {
@@ -43,7 +37,7 @@ window.addEventListener("load", () => {
           const city = data.name;
           const country = data.sys.country;
           const icon = data.weather[0].icon;
-          //Set DOM Elements form the API
+          //Set DOM Elements from the API
           const celsius = Math.round(temp - Kelvin);
           temperatureDegree.textContent = celsius;
           temperatureDescription.textContent = data.weather[0].description;
@@ -68,7 +62,7 @@ window.addEventListener("load", () => {
   }
 
   function setIcon(icon) {
-    weatherIcon.src = "https://cors-anywhere.herokuapp.com/http://openweathermap.org/img/wn/" + icon + "@2x.png";
+    weatherIcon.src = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
   }
 
   function cel2fahren(celsius) {
